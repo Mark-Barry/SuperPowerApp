@@ -54,28 +54,30 @@ namespace SuperPowerApp
         //Reading character from db
         public Superhero ReadSuperCharacter(int characterID) {
             SqlCommand command = dbConnection.CreateCommand();
-            command.CommandText = "SELECT SuperheroID,AffinityID,Name FROM Superhero WHERE SuperheroID == @param";
+            command.CommandText = "SELECT Superhero.SuperheroID,Superhero.Name,Affinity.AffinityID,Affinity.Type" +
+                "FROM dbo.Superhero INNER JOIN Affinity ON Superhero.AffinityID = Affinity.AffinityID" +
+                "WHERE SuperheroID == @param";
             command.Parameters.AddWithValue("@param", characterID);
             SqlDataReader reader = command.ExecuteReader();
             Superhero superhero = new Superhero();
             while (reader.Read())
             {
                 superhero.SuperheroID = Int32.Parse(reader.GetValue(0).ToString());
-                superhero.AffinityID = Int32.Parse(reader.GetValue(1).ToString());
-                superhero.Name = reader.GetValue(2).ToString();
+                superhero.Name = reader.GetValue(1).ToString();
+                superhero.Affinity = new Affinity(Int32.Parse(reader.GetValue(2).ToString()),reader.GetValue(3).ToString());
             }
             
             return superhero;
         }
 
-        //TODO: Creating character
+        //Creating character
         public Boolean CreateSuperCharacter(Superhero superhero) {
 
             using (SqlCommand command = dbConnection.CreateCommand())
             {
-                command.CommandText = "INSERT INTO dbo.Superhero(SuperheroID,AffinityID,Name) VALUES(@param1,@param2,@param3)";
 
-                command.Parameters.AddWithValue("@param1", superhero.SuperheroID);
+                command.CommandText = "INSERT INTO dbo.Superhero(AffinityID,Superhero.Name) VALUES(@param2,@param3)";
+
                 command.Parameters.AddWithValue("@param2", superhero.AffinityID);
                 command.Parameters.AddWithValue("@param3", superhero.Name);
 
@@ -105,6 +107,23 @@ namespace SuperPowerApp
                 }
                 return true;
             }
+        }
+
+        //Obtaining a list of affinities from Db
+        public List<Affinity> GetAffinities() {
+            SqlCommand command = dbConnection.CreateCommand();
+            command.CommandText = "SELECT AffinityID,Type FROM Affinity";
+            SqlDataReader reader = command.ExecuteReader();
+            List<Affinity> affinities = new List<Affinity>();
+            while (reader.Read())
+            {
+                Affinity affinity = new Affinity();
+                affinity.AffinityID = Int32.Parse(reader.GetValue(0).ToString());
+                affinity.Type = reader.GetValue(1).ToString();
+                affinities.Add(affinity);
+            }
+            
+            return affinities;
         }
 
     }

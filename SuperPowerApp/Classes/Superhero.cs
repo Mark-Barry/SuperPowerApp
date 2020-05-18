@@ -11,6 +11,7 @@ namespace SuperPowerApp.Classes
         public int SuperheroID { get; set; }
         public int AffinityID { get; set; }
         public string Name { get; set; }
+        public Affinity Affinity { get; set; }
 
         public Superhero() { 
         }

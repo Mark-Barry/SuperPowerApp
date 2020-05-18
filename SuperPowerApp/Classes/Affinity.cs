@@ -10,5 +10,12 @@ namespace SuperPowerApp.Classes
     {
         public int AffinityID { get; set; }
         public string Type { get; set; }
+
+        public Affinity() { }
+
+        public Affinity(int id, string type) {
+            this.AffinityID = id;
+            this.Type = type;
+        }
     }
 }
