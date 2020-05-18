@@ -12,8 +12,10 @@ namespace SuperPowerApp
 {
     public partial class form_SuperHeroRegistry : Form
     {
+        
         public form_SuperHeroRegistry()
         {
+            //this.txtBox_Origin.BackColor.A.Equals(0);
             InitializeComponent();
         }
 
