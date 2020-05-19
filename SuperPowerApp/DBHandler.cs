@@ -14,7 +14,7 @@ namespace SuperPowerApp
         private SqlConnection dbConnection;
 
         public DBHandler() {
-            this.connectionString = @"Data Source=AzureAD\IanGleeson;Initial Catalog=Demodb;User ID=sa;Password=hello12345";
+            this.connectionString = @"Data Source=(localdb)\ProjectsV13; Initial Catalog=SuperRegistry; Integrated Security=True; User ID=AzureAD\IanGleeson;";
             this.dbConnection = new SqlConnection(connectionString);
         }
 
@@ -39,7 +39,10 @@ namespace SuperPowerApp
         public Boolean DeleteSuperCharacter(int characterID) {
             using (SqlCommand command = dbConnection.CreateCommand())
             {
-                command.CommandText = "DELETE FROM dbo.Superhero,dbo.Background,dbo.SuperheroAbility,dbo.SuperheroRegion WHERE SuperheroID == @param";
+                command.CommandText = "DELETE FROM dbo.Superhero WHERE SuperheroID = @param; " +
+                    "DELETE FROM dbo.Background WHERE SuperheroID = @param; " +
+                    "DELETE FROM dbo.SuperheroAbility WHERE SuperheroID = @param;" +
+                    "DELETE FROM dbo.SuperheroRegion WHERE SuperheroID  = @param;";
                 command.Parameters.AddWithValue("@param", characterID);
 
                 int result = command.ExecuteNonQuery();
