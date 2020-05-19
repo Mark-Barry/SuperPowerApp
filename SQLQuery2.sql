@@ -12,3 +12,5 @@ ON Superhero.AffinityID = Affinity.AffinityID
 WHERE SuperheroID = 2;
 
 DELETE FROM dbo.Superhero WHERE AffinityID = 2;
+
+SELECT Max(Superhero.SuperheroID) FROM dbo.Superhero;

@@ -57,17 +57,35 @@ namespace SuperPowerApp
         //Reading character from db
         public Superhero ReadSuperCharacter(int characterID) {
             SqlCommand command = dbConnection.CreateCommand();
-            command.CommandText = "SELECT Superhero.SuperheroID,Superhero.Name,Affinity.AffinityID,Affinity.Type" +
-                "FROM dbo.Superhero INNER JOIN Affinity ON Superhero.AffinityID = Affinity.AffinityID" +
-                "WHERE SuperheroID == @param";
-            command.Parameters.AddWithValue("@param", characterID);
-            SqlDataReader reader = command.ExecuteReader();
             Superhero superhero = new Superhero();
-            while (reader.Read())
+            int maxID = 0;
+            while (superhero == null)
             {
-                superhero.SuperheroID = Int32.Parse(reader.GetValue(0).ToString());
-                superhero.Name = reader.GetValue(1).ToString();
-                superhero.Affinity = new Affinity(Int32.Parse(reader.GetValue(2).ToString()),reader.GetValue(3).ToString());
+                command.CommandText = "SELECT Superhero.SuperheroID,Superhero.Name,Affinity.AffinityID,Affinity.Type" +
+                "FROM dbo.Superhero INNER JOIN Affinity ON Superhero.AffinityID = Affinity.AffinityID" +
+                "WHERE SuperheroID == @param; " +
+                "SELECT Max(Superhero.SuperheroID) FROM dbo.Superhero;";
+                command.Parameters.AddWithValue("@param", characterID);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    superhero.SuperheroID = Int32.Parse(reader.GetValue(0).ToString());
+                    superhero.Name = reader.GetValue(1).ToString();
+                    superhero.Affinity = new Affinity(Int32.Parse(reader.GetValue(2).ToString()), reader.GetValue(3).ToString());
+                    maxID = Int32.Parse(reader.GetValue(4).ToString());
+                }
+                
+                if (superhero == null)
+                {
+                    if (characterID == maxID)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        characterID += 1;
+                    }
+                }
             }
             
             return superhero;
