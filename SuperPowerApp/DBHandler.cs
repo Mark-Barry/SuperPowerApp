@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SuperPowerApp
 {
-    class DBHandler
+    public class DBHandler
     {
         private String connectionString;
         private SqlConnection dbConnection;
@@ -16,6 +16,7 @@ namespace SuperPowerApp
         public DBHandler() {
             this.connectionString = @"Data Source=(localdb)\ProjectsV13; Initial Catalog=SuperRegistry; Integrated Security=True; User ID=AzureAD\IanGleeson;";
             this.dbConnection = new SqlConnection(connectionString);
+            this.OpenConnection();
         }
 
         public void OpenConnection()
@@ -57,38 +58,41 @@ namespace SuperPowerApp
         //Reading character from db
         public Superhero ReadSuperCharacter(int characterID) {
             SqlCommand command = dbConnection.CreateCommand();
-            Superhero superhero = new Superhero();
-            int maxID = 0;
-            while (superhero == null)
-            {
-                command.CommandText = "SELECT Superhero.SuperheroID,Superhero.Name,Affinity.AffinityID,Affinity.Type" +
-                "FROM dbo.Superhero INNER JOIN Affinity ON Superhero.AffinityID = Affinity.AffinityID" +
-                "WHERE SuperheroID == @param; " +
-                "SELECT Max(Superhero.SuperheroID) FROM dbo.Superhero;";
+            Superhero superhero = null;
+                command.CommandText = "SELECT dbo.Superhero.SuperheroID,dbo.Superhero.Name,dbo.Affinity.AffinityID,dbo.Affinity.Type " +
+                "FROM dbo.Superhero INNER JOIN dbo.Affinity ON dbo.Superhero.AffinityID = dbo.Affinity.AffinityID " +
+                "WHERE SuperheroID = @param;";
                 command.Parameters.AddWithValue("@param", characterID);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    superhero = new Superhero();
                     superhero.SuperheroID = Int32.Parse(reader.GetValue(0).ToString());
                     superhero.Name = reader.GetValue(1).ToString();
                     superhero.Affinity = new Affinity(Int32.Parse(reader.GetValue(2).ToString()), reader.GetValue(3).ToString());
-                    maxID = Int32.Parse(reader.GetValue(4).ToString());
+                    //maxID = this.GetMaxSuperheroID();
                 }
-                
-                if (superhero == null)
-                {
-                    if (characterID == maxID)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        characterID += 1;
-                    }
-                }
-            }
-            
+
+                //if (superhero == null)
+                //{
+                //    characterID += 1;
+                //}
+                command.Parameters.Clear();
+                reader.Close();
             return superhero;
+        }
+
+        public int GetMaxSuperheroID() {
+            SqlCommand commandMax = dbConnection.CreateCommand();
+            commandMax.CommandText = "SELECT Max(Superhero.SuperheroID) FROM dbo.Superhero;";
+            SqlDataReader readerMax = commandMax.ExecuteReader();
+            int maxID = 0;
+            while (readerMax.Read())
+            {
+                maxID = Int32.Parse(readerMax.GetValue(0).ToString());
+            }
+            readerMax.Close();
+            return maxID;
         }
 
         //Creating character

@@ -155,7 +155,6 @@
             this.txtBox_Super_Hero_ID.Cursor = System.Windows.Forms.Cursors.Default;
             resources.ApplyResources(this.txtBox_Super_Hero_ID, "txtBox_Super_Hero_ID");
             this.txtBox_Super_Hero_ID.Name = "txtBox_Super_Hero_ID";
-            this.txtBox_Super_Hero_ID.ReadOnly = true;
             this.txtBox_Super_Hero_ID.TabStop = false;
             // 
             // lbl_Region

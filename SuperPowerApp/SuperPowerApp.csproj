@@ -46,6 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Ability.cs" />
+    <Compile Include="Classes\Affinity.cs" />
+    <Compile Include="Classes\Alias.cs" />
+    <Compile Include="Classes\Origin.cs" />
+    <Compile Include="Classes\Region.cs" />
+    <Compile Include="Classes\Superhero.cs" />
+    <Compile Include="DBHandler.cs" />
+    <Compile Include="SuperPowerHandler.cs" />
     <Compile Include="SuperPowerRegistry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,5 +105,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

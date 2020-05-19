@@ -5,7 +5,7 @@ INSERT INTO dbo.Superhero(AffinityID,Superhero.Name) VALUES(1,'Batman');
 
 SELECT AffinityID,Type FROM Affinity;
 
-SELECT Superhero.SuperheroID,Superhero.Name,Affinity.Type 
+SELECT Superhero.SuperheroID,Superhero.Name,Affinity.AffinityID,Affinity.Type 
 FROM dbo.Superhero
 INNER JOIN Affinity 
 ON Superhero.AffinityID = Affinity.AffinityID
