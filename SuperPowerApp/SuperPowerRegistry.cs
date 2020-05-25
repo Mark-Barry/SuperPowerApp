@@ -82,5 +82,11 @@ namespace SuperPowerApp
             superhero.SuperheroID = this.superPowerHandler.currentSuperheroID;
             this.superPowerHandler.UpdateSuperhero(superhero);
         }
+
+        private void on_Create_Clicked(object sender, EventArgs e)
+        {
+            AddForm addForm = new AddForm();
+            addForm.Show();
+        }
     }
 }

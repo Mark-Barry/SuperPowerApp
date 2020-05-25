@@ -90,7 +90,7 @@
             resources.ApplyResources(this.btn_Create, "btn_Create");
             this.btn_Create.Name = "btn_Create";
             this.btn_Create.UseVisualStyleBackColor = true;
-            this.btn_Create.Click += new System.EventHandler(this.on_Exit_Clicked);
+            this.btn_Create.Click += new System.EventHandler(this.on_Create_Clicked);
             // 
             // btn_Update
             // 

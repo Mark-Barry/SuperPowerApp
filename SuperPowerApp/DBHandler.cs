@@ -117,7 +117,7 @@ namespace SuperPowerApp
 
                 command.CommandText = "INSERT INTO dbo.Superhero(AffinityID,Superhero.Name) VALUES(@param2,@param3)";
 
-                command.Parameters.AddWithValue("@param2", superhero.AffinityID);
+                command.Parameters.AddWithValue("@param2", superhero.Affinity.AffinityID);
                 command.Parameters.AddWithValue("@param3", superhero.Name);
 
                 int result = command.ExecuteNonQuery();

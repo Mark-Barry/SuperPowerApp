@@ -85,5 +85,9 @@ namespace SuperPowerApp
             this.Affinities = dbHandler.GetAffinities();
             return this.Affinities.Where(a => a.Type == type).FirstOrDefault();
         }
+
+        public void CreateSuperHero(Superhero superhero) {
+            dbHandler.CreateSuperCharacter(superhero);
+        }
     }
 }
