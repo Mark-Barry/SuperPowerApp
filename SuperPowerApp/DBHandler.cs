@@ -95,6 +95,20 @@ namespace SuperPowerApp
             return maxID;
         }
 
+        public int GetMinSuperheroID()
+        {
+            SqlCommand commandMin = dbConnection.CreateCommand();
+            commandMin.CommandText = "SELECT Min(Superhero.SuperheroID) FROM dbo.Superhero;";
+            SqlDataReader readerMin = commandMin.ExecuteReader();
+            int minID = 0;
+            while (readerMin.Read())
+            {
+                minID = Int32.Parse(readerMin.GetValue(0).ToString());
+            }
+            readerMin.Close();
+            return minID;
+        }
+
         //Creating character
         public Boolean CreateSuperCharacter(Superhero superhero) {
 
@@ -119,10 +133,11 @@ namespace SuperPowerApp
         public Boolean UpdateSuperCharacter(Superhero superhero) {
             using (SqlCommand command = dbConnection.CreateCommand())
             {
-                command.CommandText = "UPDATE dbo.Superhero SET SuperheroID = @param1,AffinityID = @param2,Name = @param3)";
+                command.CommandText = "UPDATE dbo.Superhero SET dbo.Superhero.AffinityID = @param2,dbo.Superhero.Name = @param3 " +
+                    "WHERE dbo.Superhero.SuperheroID = @param1;";
 
                 command.Parameters.AddWithValue("@param1", superhero.SuperheroID);
-                command.Parameters.AddWithValue("@param2", superhero.AffinityID);
+                command.Parameters.AddWithValue("@param2", superhero.Affinity.AffinityID);
                 command.Parameters.AddWithValue("@param3", superhero.Name);
 
                 int result = command.ExecuteNonQuery();
@@ -147,8 +162,25 @@ namespace SuperPowerApp
                 affinity.Type = reader.GetValue(1).ToString();
                 affinities.Add(affinity);
             }
-            
+            reader.Close();
             return affinities;
+        }
+
+        public Boolean CreateAffinity(string affinityType) {
+            using (SqlCommand command = dbConnection.CreateCommand())
+            {
+
+                command.CommandText = "INSERT INTO dbo.Affinity(Type) VALUES(@param1)";
+
+                command.Parameters.AddWithValue("@param1", affinityType);
+
+                int result = command.ExecuteNonQuery();
+                if (result == 0)
+                {
+                    return false;
+                }
+                return true;
+            }
         }
 
     }

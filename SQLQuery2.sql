@@ -14,3 +14,10 @@ WHERE SuperheroID = 2;
 DELETE FROM dbo.Superhero WHERE AffinityID = 2;
 
 SELECT Max(Superhero.SuperheroID) FROM dbo.Superhero;
+SELECT Min(Superhero.SuperheroID) FROM dbo.Superhero;
+
+UPDATE dbo.Superhero 
+SET AffinityID = '1',Name = 'Dare Devil Updated'
+WHERE dbo.Superhero.SuperheroID = '7';
+
+INSERT INTO dbo.Affinity(Type) VALUES('Midium-Well');

@@ -285,37 +285,37 @@
   <data name="&gt;&gt;btn_Create.ZOrder" xml:space="preserve">
     <value>21</value>
   </data>
-  <data name="btn_Edit.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="btn_Update.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btn_Edit.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="btn_Update.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 15.75pt, style=Bold</value>
   </data>
-  <data name="btn_Edit.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btn_Update.Location" type="System.Drawing.Point, System.Drawing">
     <value>1312, 182</value>
   </data>
-  <data name="btn_Edit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="btn_Update.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 6, 5, 6</value>
   </data>
-  <data name="btn_Edit.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btn_Update.Size" type="System.Drawing.Size, System.Drawing">
     <value>264, 78</value>
   </data>
-  <data name="btn_Edit.TabIndex" type="System.Int32, mscorlib">
+  <data name="btn_Update.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="btn_Edit.Text" xml:space="preserve">
-    <value>Edit</value>
+  <data name="btn_Update.Text" xml:space="preserve">
+    <value>Update</value>
   </data>
-  <data name="&gt;&gt;btn_Edit.Name" xml:space="preserve">
-    <value>btn_Edit</value>
+  <data name="&gt;&gt;btn_Update.Name" xml:space="preserve">
+    <value>btn_Update</value>
   </data>
-  <data name="&gt;&gt;btn_Edit.Type" xml:space="preserve">
+  <data name="&gt;&gt;btn_Update.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btn_Edit.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btn_Update.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btn_Edit.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btn_Update.ZOrder" xml:space="preserve">
     <value>20</value>
   </data>
   <data name="btn_Delete.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
@@ -465,9 +465,6 @@
   <data name="&gt;&gt;lbl_Super_Hero_Affininty.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="txtBox_Affinity.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="txtBox_Affinity.Location" type="System.Drawing.Point, System.Drawing">
     <value>216, 202</value>
   </data>
@@ -491,9 +488,6 @@
   </data>
   <data name="&gt;&gt;txtBox_Affinity.ZOrder" xml:space="preserve">
     <value>12</value>
-  </data>
-  <data name="txtBox_Super_Hero_Name.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="txtBox_Super_Hero_Name.Location" type="System.Drawing.Point, System.Drawing">
     <value>216, 157</value>
@@ -805,7 +799,7 @@
     <value>True</value>
   </data>
   <data name="txtBox_Origin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>429, 212</value>
+    <value>325, 201</value>
   </data>
   <data name="txtBox_Origin.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>

@@ -52,5 +52,35 @@ namespace SuperPowerApp
                 this.DisplayHero();
             }
         }
+
+        private void on_Delete_Clicked(object sender, EventArgs e)
+        {
+            this.superPowerHandler.DeleteSuperhero(this.superPowerHandler.currentSuperheroID);
+            this.DisplayHero();
+        }
+
+        private void on_Update_Clicked(object sender, EventArgs e)
+        {
+            Superhero superhero = new Superhero();
+            var affinities = superPowerHandler.Affinities;
+            foreach (var affinity in this.superPowerHandler.Affinities)
+            {
+                if (affinity.Type == txtBox_Affinity.Text)
+                {
+                    superhero.Affinity = new Affinity();
+                    superhero.Affinity.AffinityID = affinity.AffinityID;
+                    superhero.Affinity.Type = affinity.Type;
+                    break;
+                }
+            }
+            if (superhero.Affinity.AffinityID == 0)
+            {
+                superhero.Affinity = new Affinity();
+                superhero.Affinity = this.superPowerHandler.CreateAffinity(txtBox_Affinity.Text);
+            }
+            superhero.Name = txtBox_Super_Hero_Name.Text;
+            superhero.SuperheroID = this.superPowerHandler.currentSuperheroID;
+            this.superPowerHandler.UpdateSuperhero(superhero);
+        }
     }
 }

@@ -34,7 +34,7 @@
             this.btn_Previous = new System.Windows.Forms.Button();
             this.lbl_Title = new System.Windows.Forms.Label();
             this.btn_Create = new System.Windows.Forms.Button();
-            this.btn_Edit = new System.Windows.Forms.Button();
+            this.btn_Update = new System.Windows.Forms.Button();
             this.btn_Delete = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_Super_Hero_ID = new System.Windows.Forms.Label();
@@ -92,13 +92,13 @@
             this.btn_Create.UseVisualStyleBackColor = true;
             this.btn_Create.Click += new System.EventHandler(this.on_Exit_Clicked);
             // 
-            // btn_Edit
+            // btn_Update
             // 
-            this.btn_Edit.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.btn_Edit, "btn_Edit");
-            this.btn_Edit.Name = "btn_Edit";
-            this.btn_Edit.UseVisualStyleBackColor = true;
-            this.btn_Edit.Click += new System.EventHandler(this.on_Exit_Clicked);
+            this.btn_Update.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.btn_Update, "btn_Update");
+            this.btn_Update.Name = "btn_Update";
+            this.btn_Update.UseVisualStyleBackColor = true;
+            this.btn_Update.Click += new System.EventHandler(this.on_Update_Clicked);
             // 
             // btn_Delete
             // 
@@ -106,7 +106,7 @@
             resources.ApplyResources(this.btn_Delete, "btn_Delete");
             this.btn_Delete.Name = "btn_Delete";
             this.btn_Delete.UseVisualStyleBackColor = true;
-            this.btn_Delete.Click += new System.EventHandler(this.on_Exit_Clicked);
+            this.btn_Delete.Click += new System.EventHandler(this.on_Delete_Clicked);
             // 
             // label1
             // 
@@ -135,7 +135,6 @@
             this.txtBox_Affinity.Cursor = System.Windows.Forms.Cursors.Default;
             resources.ApplyResources(this.txtBox_Affinity, "txtBox_Affinity");
             this.txtBox_Affinity.Name = "txtBox_Affinity";
-            this.txtBox_Affinity.ReadOnly = true;
             this.txtBox_Affinity.TabStop = false;
             // 
             // txtBox_Super_Hero_Name
@@ -145,7 +144,6 @@
             this.txtBox_Super_Hero_Name.Cursor = System.Windows.Forms.Cursors.Default;
             resources.ApplyResources(this.txtBox_Super_Hero_Name, "txtBox_Super_Hero_Name");
             this.txtBox_Super_Hero_Name.Name = "txtBox_Super_Hero_Name";
-            this.txtBox_Super_Hero_Name.ReadOnly = true;
             this.txtBox_Super_Hero_Name.TabStop = false;
             // 
             // txtBox_Super_Hero_ID
@@ -253,7 +251,7 @@
             this.Controls.Add(this.btn_Previous);
             this.Controls.Add(this.btn_Next);
             this.Controls.Add(this.btn_Delete);
-            this.Controls.Add(this.btn_Edit);
+            this.Controls.Add(this.btn_Update);
             this.Controls.Add(this.btn_Create);
             this.Controls.Add(this.btn_Exit);
             this.DoubleBuffered = true;
@@ -271,7 +269,7 @@
         private System.Windows.Forms.Button btn_Previous;
         private System.Windows.Forms.Label lbl_Title;
         private System.Windows.Forms.Button btn_Create;
-        private System.Windows.Forms.Button btn_Edit;
+        private System.Windows.Forms.Button btn_Update;
         private System.Windows.Forms.Button btn_Delete;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_Super_Hero_ID;

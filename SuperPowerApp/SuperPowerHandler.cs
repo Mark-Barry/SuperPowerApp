@@ -12,11 +12,14 @@ namespace SuperPowerApp
         public int currentSuperheroID { get; set; }
         public DBHandler dbHandler { get; set; }
         public Superhero currentSuperhero { get; set; }
+        public List<Affinity> Affinities { get; set; }
 
         public SuperPowerHandler()
         {
             this.dbHandler = new DBHandler();
-            this.currentSuperhero = dbHandler.ReadSuperCharacter(2);
+            this.Affinities = new List<Affinity>();
+            this.Affinities = dbHandler.GetAffinities();
+            this.currentSuperhero = dbHandler.ReadSuperCharacter(dbHandler.GetMinSuperheroID());
             if (this.currentSuperhero != null)
             {
                 this.currentSuperheroID = currentSuperhero.SuperheroID;
@@ -72,6 +75,15 @@ namespace SuperPowerApp
             dbHandler.DeleteSuperCharacter(superheroID);
             this.currentSuperheroID = superheroID;
             return this.SetNextSuperheroID();
+        }
+
+        public void UpdateSuperhero(Superhero superhero) {
+            dbHandler.UpdateSuperCharacter(superhero);
+        }
+        public Affinity CreateAffinity(string type) {
+            dbHandler.CreateAffinity(type);
+            this.Affinities = dbHandler.GetAffinities();
+            return this.Affinities.Where(a => a.Type == type).FirstOrDefault();
         }
     }
 }
